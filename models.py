@@ -20,11 +20,12 @@ class EstadoSolicitud(str,enum):
 class Estudiante(Base):
     __tablename__="estudiantes"
     codigo_estudiante=Column(String,primary_key=True,index=True)
-    dni = Column(String,nullable=False)
+    dni = Column(String,nullable=False,unique=True)
     nombre = Column(String,nullable=False)
     apellidos = Column(String,nullable=False)
-    telefono = Column(String(9),nullable=True)
+    telefono = Column(String(9),nullable=False)
     carrera = Column(String,nullable=False)
+    correo = Column(String,nullable=False,unique=True)
 
     matriculas = relationship("Matriculas",back_populates="Estudiante",cascade="all,delete-orphan")
     solicitudes = relationship("Solicitudes",back_populates="Estudiante",cascade="all,delete-orphan")
